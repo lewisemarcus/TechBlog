@@ -12,7 +12,7 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
-
+  let count = 1;
   for (const blog of blogData) {
     await Blogpost.create({
       ...blog,
@@ -23,9 +23,10 @@ const seedDatabase = async () => {
       await Comment.create({
         ...comment,
         user_id: users[Math.floor(Math.random() * users.length)].id,
-        blog_id: blog.id,
+        blog_id: count,
       });
     }
+    count++;
   }
 
   process.exit(0);
