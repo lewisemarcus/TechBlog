@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', {
       blogs,
       logged_in: req.session.logged_in,
+      logged_id: req.session.logged_id,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -52,11 +53,13 @@ router.get('/blogs/:id', async (req, res) => {
     const comments = commentData.map((comment) => comment.get({ plain: true }));
 
     const blog = blogData.get({ plain: true });
-
+    console.log('>>>>>>>SESSION', req.session);
+    console.log('hello', req.session.logged_id, req.session.logged_in);
     res.render('blogpost', {
       ...blog,
       comments,
       logged_in: req.session.logged_in,
+      logged_id: req.session.logged_id,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -66,8 +69,9 @@ router.get('/blogs/:id', async (req, res) => {
 router.get('/dashboard', async (req, res) => {
   try {
     if (req.session.logged_in) {
+      console.log('user id here<<<<<<<<', req.session.logged_id);
       const userData = await User.findOne({
-        where: { id: req.session.user_id },
+        where: { id: req.session.logged_id },
       });
 
       // Get all projects corresponding to user id.
@@ -76,7 +80,7 @@ router.get('/dashboard', async (req, res) => {
           {
             model: User,
             attributes: ['name'],
-            where: { id: req.session.user_id },
+            where: { id: req.session.logged_id },
           },
         ],
       });
