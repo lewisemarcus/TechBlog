@@ -26,11 +26,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/blogs/:id', async (req, res) => {
   try {
-    console.log(req.session.user_id);
-    // Get all projects corresponding to user id.
-    const blogData = await Blogpost.findAll({
+    const blogData = await Blogpost.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -39,12 +37,40 @@ router.get('/dashboard', async (req, res) => {
       ],
     });
 
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    const blog = blogData.get({ plain: true });
 
+    res.render('blogpost', {
+      ...blog,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/dashboard', async (req, res) => {
+  try {
     if (req.session.logged_in) {
+      const userData = await User.findOne({
+        where: { id: req.session.user_id },
+      });
+
+      // Get all projects corresponding to user id.
+      const blogData = await Blogpost.findAll({
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+            where: { id: req.session.user_id },
+          },
+        ],
+      });
+      const blogs = blogData.map((blog) => blog.get({ plain: true }));
+      const user = userData.get({ plain: true });
       res.render('dashboard', {
         blogs,
         logged_in: req.session.logged_in,
+        user,
       });
       return;
     } else {
