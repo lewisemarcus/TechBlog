@@ -1,36 +1,39 @@
 //Create, delete, and edit comment posts
 const newFormHandler = async (event) => {
   event.preventDefault();
+  console.log(event.target);
+  if (event.target.hasAttribute('blog-id')) {
+    const description = document.querySelector('#comment-desc').value.trim();
+    const blog_id = event.target.getAttribute('blog-id');
+    console.log('>>>>>>>>>DESC', blog_id);
+    if (description) {
+      const response = await fetch(`/api/comments`, {
+        method: 'POST',
+        body: JSON.stringify({ description, blog_id }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-  const description = document.querySelector('#comment-desc').value.trim();
-
-  if (name && description) {
-    const response = await fetch(`/api/comments`, {
-      method: 'POST',
-      body: JSON.stringify({ name, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to create comment');
+      if (response.ok) {
+        document.location.reload();
+      } else {
+        alert('Failed to create comment');
+      }
     }
   }
 };
 
 const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
-
+  if (event.target.hasAttribute('comment-id')) {
+    const id = event.target.getAttribute('comment-id');
+    //const blogId = event.target.getAttribute('blog-id');
     const response = await fetch(`/api/comments/${id}`, {
       method: 'DELETE',
     });
-
+    console.log(response);
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.reload();
     } else {
       alert('Failed to delete comment');
     }

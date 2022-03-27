@@ -53,8 +53,6 @@ router.get('/blogs/:id', async (req, res) => {
     const comments = commentData.map((comment) => comment.get({ plain: true }));
 
     const blog = blogData.get({ plain: true });
-    console.log('>>>>>>>SESSION', req.session);
-    console.log('hello', req.session.logged_id, req.session.logged_in);
     res.render('blogpost', {
       ...blog,
       comments,

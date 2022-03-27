@@ -2,7 +2,6 @@
   <h2>{{name}}</h2>
   <p>{{description}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
-
   {{#if logged_in}}
     {{#if comments.length}}
           <div class='comment-list'>
@@ -21,7 +20,8 @@
             <div class='col-md-4'>
                 <button
                 class='btn btn-sm btn-danger'
-                data-id='{{comment.id}}'
+                comment-id='{{comment.id}}'
+                blog-id='{{../id}}'
                 >DELETE</button>
             </div>
             {{/if}}
@@ -32,13 +32,13 @@
   <div class='col-md-6'>
     <h3>Post a comment:</h3>
 
-    <form class='form new-comment-form'>
+    <form class='form new-comment-form' blog-id='{{id}}'>
       <div class='form-group'>
         <label for='comment-desc'>description:</label>
-        <textarea class='form-input' id='comment-desc' name='comment-desc'></textarea>
+        <textarea class='form-input'  id='comment-desc' name='comment-desc'></textarea>
       </div>
       <div class='form-group'>
-        <button type='submit' class='btn btn-primary'>Create</button>
+        <button type='submit'  class='btn btn-primary'>Create</button>
       </div>
     </form>
   </div>
