@@ -4,9 +4,6 @@
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
 
   {{#if logged_in}}
-  {{log "<<<<<<LOGGED ID>>>>>>"}}
-  {{log logged_id}}  {{!-- logs "2" --}}
-  {{log "<<<<<<LOGGED ID>>>>>>"}}
     {{#if comments.length}}
           <div class='comment-list'>
       {{#each comments as |comment|}}
@@ -20,10 +17,7 @@
               on
               {{format_date comment.date_created}}</p>
           </div>
-            {{log "goodbye"}}
-            {{log logged_id}} {{!-- logs "undefined" --}}
-            {{log comment.user_id}}
-            {{#ifUser comment.user_id  logged_id}}
+            {{#ifUser comment.user_id  ../logged_id}}
             <div class='col-md-4'>
                 <button
                 class='btn btn-sm btn-danger'
