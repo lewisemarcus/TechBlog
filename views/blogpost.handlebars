@@ -17,14 +17,14 @@
               on
               {{format_date comment.date_created}}</p>
           </div>
-            {{#ifUser comment.user_id  ../logged_id}}
+            {{#if (ifUser comment.user_id  ../logged_id)}}
             <div class='col-md-4'>
                 <button
                 class='btn btn-sm btn-danger'
                 data-id='{{comment.id}}'
                 >DELETE</button>
             </div>
-            {{/ifUser}}
+            {{/if}}
         </div>
       {{/each}}
       </div>
