@@ -23,33 +23,24 @@
                 comment-id='{{comment.id}}'
                 blog-id='{{../id}}'
                 >DELETE</button>
-                <button
-                onclick="location.href='/comment-update/{{../id}}'"
-                class='btn btn-sm btn-info'
-                button-id='{{comment.id}}'
-                blog-id='{{../id}}'
-                >UPDATE</button>
+                <form class='form update-comment-form'
+                blog-id='{{id}}'>
+      <div class='form-group'>
+        <label for='comment-desc'>updated description:</label>
+        <textarea class='form-input'  id='comment-desc' name='comment-desc'></textarea>
+      </div>
+      <div class='form-group'>
+        <button type='submit'  class='btn btn-primary'>Update</button>
+      </div>
+    </form>
             </div>
             {{/if}}
         </div>
       {{/each}}
       </div>
-      <div class='row mt-4'>
-  <div class='col-md-6'>
-    <h3>Post a comment:</h3>
-
-    <form class='form new-comment-form' blog-id='{{id}}'>
-      <div class='form-group'>
-        <label for='comment-desc'>description:</label>
-        <textarea class='form-input'  id='comment-desc' name='comment-desc'></textarea>
-      </div>
-      <div class='form-group'>
-        <button type='submit'  class='btn btn-primary'>Create</button>
-      </div>
-    </form>
-  </div>
+<div class='row mt-4'>
     {{/if}}
-  {{else}}
+    {{else}}
     <p>
       {{#if comments.length}}
       <div class='comment-list'>
@@ -70,7 +61,6 @@
       {{/if}}
     </p>
   {{/if}}
-
 </div>
 
 <script src='/js/comment.js'></script>

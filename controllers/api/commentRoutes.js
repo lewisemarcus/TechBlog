@@ -34,4 +34,29 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    console.log('>>>>>>>hello');
+    const commentData = await Comment.update(
+      {
+        description: req.body.description,
+      },
+      {
+        where: {
+          id: req.params.id,
+          user_id: req.session.logged_id,
+        },
+      }
+    );
+    if (!commentData) {
+      res.status(404).json({ message: 'No comment found with this id!' });
+      return;
+    }
+    console.log(commentData);
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

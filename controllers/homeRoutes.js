@@ -64,10 +64,45 @@ router.get('/blogs/:id', async (req, res) => {
   }
 });
 
+router.get('/comment-update/:id', async (req, res) => {
+  try {
+    const blogData = await Blogpost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const commentData = await Comment.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+      where: {
+        blog_id: req.params.id,
+      },
+    });
+
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+    const blog = blogData.get({ plain: true });
+    res.render('comment-update', {
+      ...blog,
+      comments,
+      logged_in: req.session.logged_in,
+      logged_id: req.session.logged_id,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/dashboard', async (req, res) => {
   try {
     if (req.session.logged_in) {
-      console.log('user id here<<<<<<<<', req.session.logged_id);
       const userData = await User.findOne({
         where: { id: req.session.logged_id },
       });
