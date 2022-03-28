@@ -4,7 +4,6 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
   try {
-    console.log(req.body);
     const newComment = await Comment.create({
       ...req.body,
       user_id: req.session.logged_id,
@@ -36,7 +35,7 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    console.log('>>>>>>>hello');
+    console.log('>>>>>>PUT REQUEST');
     const commentData = await Comment.update(
       {
         description: req.body.description,
@@ -52,9 +51,9 @@ router.put('/:id', withAuth, async (req, res) => {
       res.status(404).json({ message: 'No comment found with this id!' });
       return;
     }
-    console.log(commentData);
     res.status(200).json(commentData);
   } catch (err) {
+    console.log('>>>>>>ERROR 500');
     res.status(500).json(err);
   }
 });

@@ -23,16 +23,15 @@
                 comment-id='{{comment.id}}'
                 blog-id='{{../id}}'
                 >DELETE</button>
-                <form class='form update-comment-form'
-                blog-id='{{id}}'>
-      <div class='form-group'>
-        <label for='comment-desc'>updated description:</label>
-        <textarea class='form-input'  id='comment-desc' name='comment-desc'></textarea>
-      </div>
-      <div class='form-group'>
-        <button type='submit'  class='btn btn-primary'>Update</button>
-      </div>
-    </form>
+        <form class='form update-comment-form' blog-id='{{id}}'>
+          <div class='form-group'>
+            <label for='comment-desc'>updated description:</label>
+            <textarea class='form-input'  id='comment-desc' name='comment-desc'></textarea>
+          </div>
+          <div class='form-group'>
+            <button type='submit' class='btn btn-primary'>Update</button>
+          </div>
+        </form>
             </div>
             {{/if}}
         </div>
