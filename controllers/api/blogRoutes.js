@@ -16,7 +16,6 @@ router.post('/', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    console.log(req.params.id);
     await Comment.destroy({
       where: {
         blog_id: req.params.id,
@@ -28,9 +27,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         user_id: req.session.logged_id,
       },
     });
-    console.log('>>>>>>>BLOG DATA', blogData);
     if (!blogData) {
-      console.log('>>>>>NO DATA FOUND');
       res.status(404).json({ message: 'No blog found with this id!' });
       return;
     }
