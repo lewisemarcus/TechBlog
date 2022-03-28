@@ -38,11 +38,12 @@ const delButtonHandler = async (event) => {
     }
   }
 };
+if (document.querySelector('.new-blog-form') != null)
+  document
+    .querySelector('.new-blog-form')
+    .addEventListener('submit', newFormHandler);
 
-document
-  .querySelector('.new-blog-form')
-  .addEventListener('submit', newFormHandler);
-
-document
-  .querySelector('.blog-list')
-  .addEventListener('click', delButtonHandler);
+if (document.querySelector('.blog-list') != null)
+  document
+    .querySelector('.blog-list')
+    .addEventListener('click', delButtonHandler);

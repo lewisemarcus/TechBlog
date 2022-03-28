@@ -37,13 +37,23 @@ const delButtonHandler = async (event) => {
     }
   }
 };
+
+const cancelButtonHandler = async (event) => {
+  event.preventDefault();
+  if (event.target.hasAttribute('cancel-id')) {
+    const blog_id = event.target.getAttribute('blog-id');
+    document.location.replace(`/blogs/${blog_id}`);
+  }
+};
+
 const updateCommentHandler = async (event) => {
   event.preventDefault();
-  console.log('>>>>>>>UPDATE HANDLER');
   if (event.target.hasAttribute('blog-id')) {
-    const id = event.target.getAttribute('comment-id');
+    console.log('>>>>>>>HELLO');
+    const id = event.target.getAttribute('update-id');
     const description = document.querySelector('#comment-desc').value.trim();
     const blog_id = event.target.getAttribute('blog-id');
+    console.log('>>>>>>> INFO', id, description, blog_id);
     if (description) {
       const response = await fetch(`/api/comments/${id}`, {
         method: 'PUT',
@@ -60,17 +70,26 @@ const updateCommentHandler = async (event) => {
     }
   }
 };
+
 if (document.querySelector('.new-comment-form') != null)
   document
     .querySelector('.new-comment-form')
     .addEventListener('submit', newFormHandler);
 
-if (document.querySelector('.update-comment-form') != null)
+if (document.querySelector('.update-comment-form') != null) {
+  console.log(document.querySelector('.update-comment-form'));
   document
     .querySelector('.update-comment-form')
-    .addEventListener('submit', updateCommentHandler);
+    //Why does submit not work in place of click?
+    .addEventListener('click', updateCommentHandler);
+}
 
 if (document.querySelector('.comment-list') != null)
   document
     .querySelector('.comment-list')
     .addEventListener('click', delButtonHandler);
+
+if (document.querySelector('.cancel-button') != null)
+  document
+    .querySelector('.cancel-button')
+    .addEventListener('click', cancelButtonHandler);
