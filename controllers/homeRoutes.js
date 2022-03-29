@@ -145,6 +145,7 @@ router.get('/update-blog/:id', withAuth, async (req, res) => {
 
       // Get all projects corresponding to user id.
       const blogData = await Blogpost.findOne({
+        where: { id: req.params.id },
         include: [
           {
             model: User,

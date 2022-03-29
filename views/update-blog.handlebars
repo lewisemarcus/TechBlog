@@ -9,12 +9,22 @@
     <h3>Update Blog: {{name}}</h3>
     <form class='form update-blog-form' updoot-id='{{id}}'>
       <div class='form-group'>
-        <label for='update-name'>blog name:</label>
-        <input class='form-input' type='text' id='update-name' name='update-name' />
+        <label for='update-name'>updated blog name:</label>
+        <input
+          class='form-input'
+          type='text'
+          id='update-name'
+          name='update-name'
+          value='{{name}}'
+        />
       </div>
       <div class='form-group'>
-        <label for='update-desc'>description:</label>
-        <textarea class='form-input' id='update-desc' name='update-desc'></textarea>
+        <label for='update-desc'>updated description:</label>
+        <textarea
+          class='form-input'
+          id='update-desc'
+          name='update-desc'
+        >{{description}}</textarea>
       </div>
       <div class='form-group'>
         <button type='submit' class='btn btn-primary'>UPDATE</button>
@@ -22,11 +32,13 @@
     </form>
   </div>
 
-
   <div class='col-md-4'>
-    <button class='btn btn-sm btn-danger' data-id='{{blog.id}}' >DELETE</button>
+    <button class='btn btn-sm btn-danger' data-id='{{blog.id}}'>DELETE</button>
     <a href='/dashboard'>
-      <button class='btn btn-sm btn-primary cancel-button' cancel-id='{{comment.id}}' blog-id='{{../id}}'>CANCEL</button>
+      <button
+        class='btn btn-sm btn-primary cancel-button'
+        cancel-id='{{comment.id}}'
+      >CANCEL</button>
     </a>
   </div>
 </div>
