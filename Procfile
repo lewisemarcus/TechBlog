@@ -1,2 +1,1 @@
-next: npm start
-web: npm run seed
+web: npm run seed & start & wait -n
