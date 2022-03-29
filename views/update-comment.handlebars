@@ -17,27 +17,29 @@
               {{format_date comment.date_created}}</p>
           </div>
             {{#if (ifUser comment.user_id  ../logged_id)}}
+            {{#if (ifUser ../comment_id comment.id)}}
             <div class='col-md-4'>
                 <button
                 class='btn btn-sm btn-danger'
-                comment-id='{{comment.id}}'
+                comment-id='{{id}}'
                 blog-id='{{../id}}'
                 >DELETE</button>
                 <button
                 class='btn btn-sm btn-primary cancel-button'
-                cancel-id='{{comment.id}}'
+                cancel-id='{{id}}'
                 blog-id='{{../id}}'
                 >CANCEL</button>
         <form class='form'>
           <div class='form-group'>
             <label for='comment-desc'>Update Comment:</label>
-            <textarea class='form-input'  id='comment-desc' name='comment-desc'></textarea>
+            <textarea class='form-input'  id='comment-desc' name='comment-desc'>{{comment.description}}</textarea>
           </div>
           <div class='form-group'>
             <button type='submit' class='btn btn-primary update-comment-form' blog-id='{{../id}}' update-id='{{comment.id}}'>UPDATE</button>
           </div>
         </form>
             </div>
+            {{/if}}
             {{/if}}
         </div>
       {{/each}}

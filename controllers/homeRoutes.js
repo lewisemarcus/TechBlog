@@ -67,7 +67,15 @@ router.get('/blogs/:id', withAuth, async (req, res) => {
 
 router.get('/update-comment/:id', withAuth, async (req, res) => {
   try {
-    const blogData = await Blogpost.findByPk(req.params.id, {
+    const clicked_comment = await Comment.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    const comment_id = req.params.id;
+
+    const blogData = await Blogpost.findByPk(clicked_comment.blog_id, {
       include: [
         {
           model: User,
@@ -84,7 +92,7 @@ router.get('/update-comment/:id', withAuth, async (req, res) => {
         },
       ],
       where: {
-        blog_id: req.params.id,
+        blog_id: clicked_comment.blog_id,
       },
     });
 
@@ -97,6 +105,7 @@ router.get('/update-comment/:id', withAuth, async (req, res) => {
       comments,
       logged_in: req.session.logged_in,
       logged_id: req.session.logged_id,
+      comment_id,
     });
   } catch (err) {
     res.status(500).json(err);
