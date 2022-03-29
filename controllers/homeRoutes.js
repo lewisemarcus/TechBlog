@@ -65,7 +65,7 @@ router.get('/blogs/:id', withAuth, async (req, res) => {
   }
 });
 
-router.get('/comment-update/:id', withAuth, async (req, res) => {
+router.get('/update-comment/:id', withAuth, async (req, res) => {
   try {
     const blogData = await Blogpost.findByPk(req.params.id, {
       include: [
@@ -92,7 +92,7 @@ router.get('/comment-update/:id', withAuth, async (req, res) => {
 
     const blog = blogData.get({ plain: true });
 
-    res.render('comment-update', {
+    res.render('update-comment', {
       ...blog,
       comments,
       logged_in: req.session.logged_in,
