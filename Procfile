@@ -1,1 +1,1 @@
-worker: npm run seed
+worker: node server.js
