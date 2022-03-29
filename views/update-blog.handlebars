@@ -1,0 +1,34 @@
+<div class='row'>
+  <div class='col-auto'>
+    <h2>Welcome, {{user.name}}!</h2>
+  </div>
+</div>
+
+<div class='row mt-4'>
+  <div class='col-md-6'>
+    <h3>Update Blog: {{name}}</h3>
+    <form class='form update-blog-form' updoot-id='{{id}}'>
+      <div class='form-group'>
+        <label for='update-name'>blog name:</label>
+        <input class='form-input' type='text' id='update-name' name='update-name' />
+      </div>
+      <div class='form-group'>
+        <label for='update-desc'>description:</label>
+        <textarea class='form-input' id='update-desc' name='update-desc'></textarea>
+      </div>
+      <div class='form-group'>
+        <button type='submit' class='btn btn-primary'>UPDATE</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div class='col-md-4'>
+    <button class='btn btn-sm btn-danger' data-id='{{blog.id}}' >DELETE</button>
+    <a href='/dashboard'>
+      <button class='btn btn-sm btn-primary cancel-button' cancel-id='{{comment.id}}' blog-id='{{../id}}'>CANCEL</button>
+    </a>
+  </div>
+</div>
+
+<script src='/js/dashboard.js'></script>

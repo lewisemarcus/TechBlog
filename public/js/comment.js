@@ -14,7 +14,7 @@ const newFormHandler = async (event) => {
       });
 
       if (response.ok) {
-        document.location.reload();
+        document.location.replace(`/blogs/${blog_id}`);
       } else {
         alert('Failed to create comment');
       }
@@ -49,11 +49,10 @@ const cancelButtonHandler = async (event) => {
 const updateCommentHandler = async (event) => {
   event.preventDefault();
   if (event.target.hasAttribute('blog-id')) {
-    console.log('>>>>>>>HELLO');
     const id = event.target.getAttribute('update-id');
     const description = document.querySelector('#comment-desc').value.trim();
     const blog_id = event.target.getAttribute('blog-id');
-    console.log('>>>>>>> INFO', id, description, blog_id);
+
     if (description) {
       const response = await fetch(`/api/comments/${id}`, {
         method: 'PUT',
@@ -76,13 +75,11 @@ if (document.querySelector('.new-comment-form') != null)
     .querySelector('.new-comment-form')
     .addEventListener('submit', newFormHandler);
 
-if (document.querySelector('.update-comment-form') != null) {
-  console.log(document.querySelector('.update-comment-form'));
+if (document.querySelector('.update-comment-form') != null)
   document
     .querySelector('.update-comment-form')
     //Why does submit not work in place of click?
     .addEventListener('click', updateCommentHandler);
-}
 
 if (document.querySelector('.comment-list') != null)
   document

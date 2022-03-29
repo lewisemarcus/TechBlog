@@ -16,7 +16,6 @@ router.post('/', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    console.log('>>>>>>>ID', req.params.id);
     const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
@@ -35,7 +34,6 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    console.log('>>>>>>PUT REQUEST');
     const commentData = await Comment.update(
       {
         description: req.body.description,
@@ -53,7 +51,6 @@ router.put('/:id', withAuth, async (req, res) => {
     }
     res.status(200).json(commentData);
   } catch (err) {
-    console.log('>>>>>>ERROR 500');
     res.status(500).json(err);
   }
 });

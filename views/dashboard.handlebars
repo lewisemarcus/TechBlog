@@ -18,7 +18,7 @@
         <textarea class='form-input' id='blog-desc' name='blog-desc'></textarea>
       </div>
       <div class='form-group'>
-        <button type='submit' class='btn btn-primary'>Create</button>
+        <button type='submit' class='btn btn-primary'>CREATE</button>
       </div>
     </form>
   </div>
@@ -37,10 +37,12 @@
               class='btn btn-sm btn-danger'
               data-id='{{blog.id}}'
             >DELETE</button>
-            <button
-              class='btn btn-sm btn-info'
-              data-id='{{blog.id}}'
-            >UPDATE</button>
+                <button
+                onclick="location.href='/update-blog/{{blog.id}}'"
+                class='btn btn-sm btn-info'
+                button-id='{{comment.id}}'
+                blog-id='{{../id}}'
+                >UPDATE</button>
           </div>
         </div>
       {{/each}}

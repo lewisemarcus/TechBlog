@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { Blogpost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
-router.get('/', async (req, res) => {
+
+router.get('/', withAuth, async (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const blogData = await Blogpost.findAll({
@@ -27,7 +28,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/blogs/:id', async (req, res) => {
+router.get('/blogs/:id', withAuth, async (req, res) => {
   try {
     const blogData = await Blogpost.findByPk(req.params.id, {
       include: [
@@ -64,7 +65,7 @@ router.get('/blogs/:id', async (req, res) => {
   }
 });
 
-router.get('/comment-update/:id', async (req, res) => {
+router.get('/comment-update/:id', withAuth, async (req, res) => {
   try {
     const blogData = await Blogpost.findByPk(req.params.id, {
       include: [
@@ -90,6 +91,7 @@ router.get('/comment-update/:id', async (req, res) => {
     const comments = commentData.map((comment) => comment.get({ plain: true }));
 
     const blog = blogData.get({ plain: true });
+
     res.render('comment-update', {
       ...blog,
       comments,
@@ -101,7 +103,7 @@ router.get('/comment-update/:id', async (req, res) => {
   }
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     if (req.session.logged_in) {
       const userData = await User.findOne({
@@ -122,6 +124,39 @@ router.get('/dashboard', async (req, res) => {
       const user = userData.get({ plain: true });
       res.render('dashboard', {
         blogs,
+        logged_in: req.session.logged_in,
+        user,
+      });
+      return;
+    } else {
+      res.redirect('/login');
+      return;
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.get('/update-blog/:id', withAuth, async (req, res) => {
+  try {
+    if (req.session.logged_in) {
+      const userData = await User.findOne({
+        where: { id: req.session.logged_id },
+      });
+
+      // Get all projects corresponding to user id.
+      const blogData = await Blogpost.findOne({
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+            where: { id: req.session.logged_id },
+          },
+        ],
+      });
+      const blog = blogData.get({ plain: true });
+      const user = userData.get({ plain: true });
+      res.render('update-blog', {
+        ...blog,
         logged_in: req.session.logged_in,
         user,
       });
