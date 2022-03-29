@@ -1,4 +1,3 @@
-import sequelize from '../../E-CommerceBackEnd/config/connection';
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
