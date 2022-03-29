@@ -1,10 +1,12 @@
-#  Tech Blog
+# Tech Blog
 
-  ![License: MIT ](https://img.shields.io/badge/License-MIT-informational)
+![License: MIT ](https://img.shields.io/badge/License-MIT-informational)
 
-  ## Description
+## Description
 
-  ```md
+[Deployed Application](https://agile-dawn-55678.herokuapp.com/)
+
+```md
 GIVEN a CMS-style blog site
 WHEN a user visits the site for the first time
 THEN a user is presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
@@ -40,25 +42,28 @@ WHEN a user is idle on the site for more than a set time
 THEN a user is able to view comments but a user is prompted to log in again before a user can add, update, or delete comments
 ```
 
-  ## Table of Contents
+![Image of website homepage](Assets/techblog.png)
 
-  - [Installation](#installation)
+## Table of Contents
 
-  - [Walkthrough](#walkthrough)
+- [Installation](#installation)
 
-  - [Usage](#usage)
+- [Walkthrough](#walkthrough)
 
-  - [Author(s)](#authors)
+- [Usage](#usage)
 
-  - [Contributing](#contributing)
+- [Author(s)](#authors)
 
-  - [License](#license)
+- [Contributing](#contributing)
 
-  - [Questions](#questions)
+- [License](#license)
 
-  ## Installation
+- [Questions](#questions)
 
-  Use the package manager [N/A] to install .
+## Installation
+
+Use the package manager [N/A] to install .
+
 ```bash
 
 
@@ -67,36 +72,33 @@ N/A
 
 ```
 
-  ## Walkthrough
+## Walkthrough
 
-  N/A
-  ## Usage
-  
 N/A
 
-  ## Author(s)
+## Usage
 
-  - [lewisemarcus](https://github.com/lewisemarcus)
+N/A
 
+## Author(s)
 
-  
+- [lewisemarcus](https://github.com/lewisemarcus)
+
 ## Tests
-  
+
 N/A
 
-  ## Contributing
- 
-  Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Contributing
 
-  
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
 ## License
 
-  Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License.
+Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License.
 
-  For more information on the License, please visit:  https://opensource.org/licenses/mit
+For more information on the License, please visit: https://opensource.org/licenses/mit
 
-  ## Questions
-  
+## Questions
+
 - [Marcus Lewis](https://github.com/lewisemarcus) - Lead Author's GitHub Link
-  
 - If you would like to email me for further questions, please send one to: <lewisemarcus@gmail.com>

@@ -6,7 +6,7 @@ const sequelize = new Sequelize(
   process.env.DB_USER,
   process.env.DB_PASSWORD,
   {
-    host: 'localhost',
+    host: 'https://agile-dawn-55678.herokuapp.com',
     dialect: 'mysql',
     port: 3306,
   }
