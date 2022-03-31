@@ -8,7 +8,8 @@
     "start": "npm run dev",
     "dev": "concurrently npm:start:*",
     "start:seed": "node seeds/seed.js",
-    "start:start": "node server.js"
+    "delay": "node ./node_modules/npm-delay 1000",
+    "start:start": "run-s delay node server.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.15",
+    "npm-delay": "^1.0.4",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
