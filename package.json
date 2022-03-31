@@ -9,7 +9,7 @@
     "dev": "concurrently npm:start:*",
     "start:seed": "node seeds/seed.js",
     "delay": "node ./node_modules/npm-delay 1000",
-    "start:start": "run-s delay node server.js"
+    "start:start": "npm run delay server.js"
   },
   "keywords": [],
   "author": "",
