@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run dev",
     "dev": "concurrently npm:start:*",
     "start:seed": "node seeds/seed.js",
     "start:start": "node server.js"
